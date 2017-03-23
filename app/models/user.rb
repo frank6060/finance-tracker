@@ -10,13 +10,20 @@ class User < ApplicationRecord
   def can_add_stock?(ticker_symbol)
 	under_stock_limit? && !stock_already_added?(ticker_symbol)
   end
+
   def under_stock_limit?
 	(user_stocks.count < 10)
 	end
+
   def stock_already_added?(ticker_symbol)
 	stock = Stock.find_by_ticker(ticker_symbol)
 	return false unless stock
 	user_stocks.where(stock_id: stock.id).exists?
+  end
+
+  def full_name
+  return "#{first_name} #{last_name}".strip if (first_name || last_name)
+  "Anonymous"
   end
 
 end
