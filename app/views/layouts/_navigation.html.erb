@@ -1,5 +1,5 @@
-    <div class="navbar navbar-default navbar-static-top">
-      <div class="container">
+    <nav class="navbar navbar-inverse ">
+      <div class="container-fluid">
             <%= link_to 'Finance Tracker', root_path, class: "navbar-brand" %>
            <% if current_user %>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -9,16 +9,17 @@
             </button>
             
         <div class="navbar-collapse collapse navbar-responsive-collapse">
-
             <ul class="nav navbar-nav col-md-6">
               <li><%= link_to "My Portfolio", my_portfolio_path %></li> 
               <li><%= link_to "My Profile", edit_registration_path(current_user) %></li>
               <li><%= link_to "My Friends", my_friends_path%></li>
+              <li><%= link_to "Contact", contacts_path%></li>
+              <li><%= link_to "About", abouts_path%></li>
             </ul>
 
-            <ul class="nav navbar-right col-md-4">
+            <ul class="nav navbar-nav navbar-right col-md-4">
               <li class="col-md-8 user-name text-right">
-              <i class="fa fa-user"></i>
+              <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
               <%= current_user.full_name.present? ? current_user.full_name : current_user.email %>
               </li>
               <li class="col-md-4 logout"><%= link_to("Logout", destroy_user_session_path,
@@ -28,4 +29,4 @@
           <% end %>
           </div>
        </div>
-    </div>
+    </nav>
